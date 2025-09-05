@@ -9,4 +9,14 @@
 // 1.2.2 자바스크립트는 굉장히 유연한 언어 (동적 타입)
 // 1.2.3 타입스크립트는 자바스크립트에 타입을 추가함 -> 정적 타입
 
-let num = "Hello";
+// 2. 최신 tsconfig.json 설정을 사용할 경우
+// 2.1 ts -> js 모듈로 변환이 된다.
+// 2.1.1 <script type="module" src="..." />
+
+// 2.2 최신 설정을 바꾸는 방법
+// 2.2.1 isolatedModules -> false
+// 2.2.2 moduleDetection -> "auto"
+// 2.2.3 <script defer src="..." />
+
+// 2.3 5.8 버전의 추천 설정을 사용하기 (강의 노트)
+// 2.3.1 <script defer src="..." />

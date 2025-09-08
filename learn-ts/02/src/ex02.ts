@@ -24,3 +24,6 @@
   console.log(result1); // 10
   console.log(result2); // 10
 }
+{
+  // 3.
+}

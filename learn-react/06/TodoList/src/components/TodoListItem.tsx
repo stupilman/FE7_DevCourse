@@ -11,6 +11,7 @@ export default function TodoListItem({
   handleCheckBox,
   handleDeleteTodo,
   handleChangeTodo,
+  handleEditTodo,
 }: {
   isCompleted: boolean;
   text: string;
@@ -19,6 +20,7 @@ export default function TodoListItem({
   handleCheckBox: (id: number) => void;
   handleDeleteTodo: (id: number) => void;
   handleChangeTodo: (id: number) => void;
+  handleEditTodo: (id: number, text: string) => void;
 }) {
   return (
     <>
@@ -35,7 +37,14 @@ export default function TodoListItem({
           </Checkbox>
         )}
         {/* 할 일을 수정할 때만 노출 (.todo__checkbox-group은 비노출)  */}
-        {isChanging && <input type="text" className="todo__modify-input" />}
+        {isChanging && (
+          <input
+            type="text"
+            className="todo__modify-input"
+            value={text}
+            onChange={(e) => handleEditTodo(id, e.target.value)}
+          />
+        )}
         <div className="todo__button-group">
           <Button
             className="todo__action-button"

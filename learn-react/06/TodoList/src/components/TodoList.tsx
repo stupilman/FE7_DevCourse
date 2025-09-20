@@ -6,6 +6,7 @@ export default function TodoList({
   handleCheckBox,
   handleDeleteTodo,
   handleChangeTodo,
+  handleEditTodo,
 }: {
   todos: {
     id: number;
@@ -16,6 +17,7 @@ export default function TodoList({
   handleCheckBox: (id: number) => void;
   handleDeleteTodo: (id: number) => void;
   handleChangeTodo: (id: number) => void;
+  handleEditTodo: (id: number, text: string) => void;
 }) {
   // const content =
   return (
@@ -32,6 +34,7 @@ export default function TodoList({
             handleCheckBox={handleCheckBox}
             handleDeleteTodo={handleDeleteTodo}
             handleChangeTodo={handleChangeTodo}
+            handleEditTodo={handleEditTodo}
           />
         ))}
       </ul>

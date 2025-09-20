@@ -52,6 +52,16 @@ export default function Todo() {
       })
     );
   };
+  const handleEditTodo = (id: number, text: string) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (id !== todo.id) {
+          return todo;
+        }
+        return { ...todo, text };
+      })
+    );
+  };
 
   return (
     <>
@@ -69,6 +79,7 @@ export default function Todo() {
           handleCheckBox={handleCheckBox}
           handleDeleteTodo={handleDeleteTodo}
           handleChangeTodo={handleChangeTodo}
+          handleEditTodo={handleEditTodo}
         />
       </div>
     </>

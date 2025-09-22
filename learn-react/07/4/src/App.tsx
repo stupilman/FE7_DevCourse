@@ -18,9 +18,7 @@ type CounterContextType = {
   decrement: () => void;
   reset: () => void;
 };
-// eslint-disable-next-line react-refresh/only-export-components
 
-// eslint-disable-next-line react-refresh/only-export-components
 // export const CounterContext = createContext<CounterContextType>({
 //   count: 0,
 //   increment: () => {},

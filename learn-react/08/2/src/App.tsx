@@ -1,7 +1,9 @@
+import Page from "./components/Page.tsx";
+
 export default function App() {
   return (
     <>
-      <h1>App Component</h1>
+      <Page/>
     </>
   );
 }

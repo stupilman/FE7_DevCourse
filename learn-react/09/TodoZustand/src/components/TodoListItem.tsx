@@ -3,20 +3,21 @@ import Button from "./html/Button";
 import Checkbox from "./html/Checkbox";
 import SvgClose from "./svg/SvgClose";
 import SvgPencil from "./svg/SvgPencil";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../store/store.ts";
-import { deleteTodo, toggleTodo, updateTodo } from "../store/slice/todoSlice.ts";
+import { useEffect, useState } from "react";
+import { useTodoStore } from "../stores/TodoStore.ts";
 
-export default React.memo(function TodoListItem({ todo }: { todo: Todo }) {
+export default function TodoListItem({ todo }: { todo: Todo }) {
   console.log("TodoListItem Rendering");
 
-  const dispatch = useDispatch<AppDispatch>();
+  const toggleTodo = useTodoStore((state) => state.toggleTodo);
+  const deleteTodo = useTodoStore((state) => state.deleteTodo);
+  const updateTodo = useTodoStore((state) => state.updateTodo);
+
   const [isEdit, setIsEdit] = useState(false);
   const [text, setText] = useState(todo.text);
   useEffect(() => {
     if (!isEdit && todo.text !== text) {
-      dispatch(updateTodo({ id: todo.id, text }));
+      updateTodo(todo.id, text);
     }
   }, [isEdit, text, todo.id, todo.text, updateTodo]);
   return (
@@ -34,7 +35,7 @@ export default React.memo(function TodoListItem({ todo }: { todo: Todo }) {
             type="checkbox"
             className="todo__checkbox"
             checked={todo.completed}
-            onChange={() => dispatch(toggleTodo({ id: todo.id }))}
+            onChange={() => toggleTodo(todo.id)}
           >
             {todo.text}
           </Checkbox>
@@ -57,7 +58,7 @@ export default React.memo(function TodoListItem({ todo }: { todo: Todo }) {
           </Button>
           <Button
             className="todo__action-button"
-            onClick={() => dispatch(deleteTodo({ id: todo.id }))}
+            onClick={() => deleteTodo(todo.id)}
           >
             <SvgClose />
           </Button>
@@ -65,4 +66,4 @@ export default React.memo(function TodoListItem({ todo }: { todo: Todo }) {
       </li>
     </>
   );
-});
+}

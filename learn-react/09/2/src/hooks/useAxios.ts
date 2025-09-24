@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { axiosInstance } from "../api/axiosInstance.ts";
 
-export default function useFetch<T>(url: string) {
-  const [data, setdata] = useState<T | null>();
+export default function useAxios<T>(url: string) {
+  const [data, setData] = useState<T | null>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -9,10 +10,8 @@ export default function useFetch<T>(url: string) {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(res.statusText);
-        const data = await res.json();
-        setdata(data);
+        const { data } = await axiosInstance.get(url);
+        setData(data);
       } catch (e) {
         setError(e instanceof Error ? e.message : "unknown error");
       } finally {

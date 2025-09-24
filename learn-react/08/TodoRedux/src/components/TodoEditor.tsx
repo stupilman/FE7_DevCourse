@@ -1,15 +1,18 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Button from "./html/Button";
 import Input from "./html/Input";
-import { TodoActionContext } from "../context/todos/TodoContext.tsx";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store/store.ts";
+import { addTodo } from "../store/slice/todoSlice.ts";
 
 export default function TodoEditor() {
-  const {addTodo} = useContext(TodoActionContext)
+  // const {addTodo} = useContext(TodoActionContext)
+  const dispatch = useDispatch<AppDispatch>();
   const [text, setText] = useState("");
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text.trim() === "") return;
-    addTodo(text);
+    dispatch(addTodo({ text }));
     setText("");
   };
   return (

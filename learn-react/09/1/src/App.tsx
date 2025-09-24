@@ -1,9 +1,9 @@
-import Todo from "./components/Todo";
+import Page from "./components/Page.tsx";
 
 export default function App() {
   return (
     <>
-      <Todo />
+      <Page />
     </>
   );
 }

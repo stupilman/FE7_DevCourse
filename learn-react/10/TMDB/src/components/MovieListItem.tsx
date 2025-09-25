@@ -1,24 +1,18 @@
 import { star } from "../assets/movies/assets";
+import { format } from "date-fns";
 
+// Crash Error
 export default function MovieListItem({
-  posterPath,
   title,
-  voteAvg,
-  releaseDate,
-}: {
-  posterPath: string;
-  title: string;
-  voteAvg: number;
-  releaseDate: string;
-}) {
-  const avg = Number(voteAvg).toFixed(1);
-  const parts = releaseDate.split("-");
-  const formattedDate = `${parseInt(parts[1]) / 2}.${parseInt(parts[2]) / 2}`;
+  release_date,
+  vote_average,
+  poster_path,
+}: MovieType) {
   return (
     <>
       <div>
         <img
-          src={`https://image.tmdb.org/t/p/w500/${posterPath}`}
+          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
           alt=""
           className="rounded-md w-full"
         />
@@ -34,9 +28,11 @@ export default function MovieListItem({
               height={18}
               className="object-contain"
             />
-            <span className="text-yellow-500">{avg}</span>
+            <span className="text-yellow-500">{vote_average.toFixed(1)}</span>
           </div>
-          <span className="text-yellow-500 font-bold">{formattedDate}</span>
+          <span className="text-yellow-500 font-bold">
+            {format(new Date(release_date), "MM.dd")}
+          </span>
         </div>
       </div>
     </>

@@ -1,14 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import "./css/index.css";
-import { ErrorBoundary } from "react-error-boundary";
-import GlobalError from "./components/GlobalError.tsx";
+import { BrowserRouter } from "react-router";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ErrorBoundary FallbackComponent={GlobalError}>
+    <BrowserRouter>
       <App />
-    </ErrorBoundary>
+    </BrowserRouter>
   </StrictMode>
 );

@@ -3,11 +3,10 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./css/index.css";
 import { ErrorBoundary } from "react-error-boundary";
-import GlobalError from "./components/GlobalError.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ErrorBoundary FallbackComponent={GlobalError}>
+    <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <App />
     </ErrorBoundary>
   </StrictMode>
